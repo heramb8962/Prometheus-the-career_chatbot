@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+    background-color: #183B4E; 
+    background-image: url(https://images.unsplash.com/photo-1540449078594-94d6173856c0?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGdhbGF4aWVzfGVufDB8fDB8fHww);
+    background-size: cover;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    height: 60vh;
+    width: 50vw;
+    max-width: 50vw;
+    padding: 15px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 30px;
+}
+
+#chat-input {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 800px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 12px;
+    border: 2px solid black;
+    border-right: none;
+    outline: none;
+    width: 40.7vw;
+    background: #F6F8D5;
+    color: black;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    background: #4F959D;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid black;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #205781;
+}
+
+#chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+@keyframes growText {
+    from {
+        font-size: x-small;
+        opacity: 0;
+    }
+    to {
+        font-size: 2.4rem;
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-size: x-small;
+    color: #F0F8FF;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    animation: growText 1.5s ease-out forwards;
+}
+
+.head {
+    height: 8vh;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7vh;
+    margin-bottom: 3vh;
+}
+
+.icon {
+    position: absolute;
+    left: 0;
+    font-size: 3rem;
+    margin-left: 3vw;
+    margin-top: 5vh;
+}
+
+.clear-icon {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.clear-icon:hover {
+    transform: scale(1.2);
+    color: lightgray;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltip-text {
+    white-space: nowrap;
+    visibility: hidden;
+    color: white;
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 150%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.voice-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 3px;
+    width: 25px;
+    color: white;
+    transition: color 0.2s ease-in-out;
+}
+
+.voice-icon:hover {
+    color: rgb(82, 82, 232);
+}
+
+.voice-icon.recording {
+    color: rgb(255, 0, 0) !important;
+}
+
+.speak-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.speak-icon:hover {
+    color: #55f45d;
+}
+
+#speak {
+    position: absolute;
+    left: 0;
+    font-size: 3rem;
+    margin-left: 8vw;
+    margin-top: 3.5vh;
+}
+
+#replay-speak:hover {
+    color: green;
+}
+
+#replay-speak.speaking {
+    color: red;
+}
+
+#play{
+    position: absolute;
+    left: 0;
+    font-size: 3rem;
+    margin-left: 1vw;
+    margin-top: 90vh;
+}
+
+.hidden {
+    display: none;
+}
+
+#skill-gap-analyzer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: #4F959D;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#skill-input-container {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    z-index: 100;
+}
+
+#skill-input-container input {
+    padding: 8px;
+    border: 1px solid #4F959D;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 4px;
+}
+
+#skill-results {
+    position: absolute;
+    top: 200px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    width: 300px;
+    display: none;
+    color: white;
+}
+
+#analyze-button {
+    background: #4F959D;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#job-trends-btn {
+    position: absolute;
+    top: 20px;
+    right: 200px;
+    padding: 10px 15px;
+    background: #4F959D;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#job-trends-dashboard canvas {
+    width: 100% !important;
+    height: 200px !important;
+    margin-top: 15px;
+}
+
+.trend-metric {
+    background: rgba(79, 149, 157, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.trend-metric h4 {
+    margin: 0 0 5px 0;
+    color: #4F959D;
+    font-size: 14px;
+}
+
+.trend-metric p {
+    margin: 0;
+    font-size: 18px;
+}
+
+#mental-health-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: #4F959D;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#mental-health-dashboard {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    width: 350px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 1000;
+    border: 1px solid #4F959D;
+}
+
+.mood-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.mood-options button {
+    padding: 10px;
+    border: 1px solid #4F959D;
+    background: rgba(79, 149, 157, 0.2);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.mood-options button:hover {
+    background: #4F959D;
+    transform: translateY(-2px);
+}
+
+.mental-health-tip {
+    background: rgba(79, 149, 157, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 3px solid #4F959D;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 20px;
+}
+/* Mental Health Button - Matching Skill Gap Analyzer Style */
+#mental-health-btn {
+    position: absolute;
+    top: 20px;
+    right: 350px;
+    padding: 10px 15px;
+    background: #4F959D;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 16px;
+    border: 2px solid black;
+    transition: background 0.3s;
+}
+
+#mental-health-btn:hover {
+    background: #205781;
+}
+
+/* Adjust positioning of other elements */
+#job-trends-btn {
+    right: 200px;
+}
+
+#skill-gap-analyzer {
+    right: 20px;
+}
+
+/* Make dashboard match skill analyzer style */
+#mental-health-dashboard {
+    position: absolute;
+    top: 70px;
+    right: 350px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 100;
+    border: 1px solid #4F959D;
+}
