@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prometheus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <i class="fa-brands fa-slack icon"></i>
+    <div id="speak" class="tooltip">
+        <i onclick="toggleSpeech()" id="speak-toggle" class="fa-solid fa-volume-high speak-icon"></i>
+        <span class="tooltip-text" id="speak-tooltip">Enable Speak</span>
+    </div>
+    <div id="play" class="tooltip">
+        <i id="replay-speak" class="fa-solid fa-play speak-icon" onclick="replayLastResponse()"></i>
+        <span id="replay-tooltip" class="tooltip-text">Play Last Response</span>
+    </div> 
+    <div class="head">        
+        <h1>PROMETHEUS</h1>
+    </div>
+
+    <!-- Mental Health Button -->
+<!-- Mental Health Check Button with Text -->
+<button id="mental-health-btn" style="position: absolute; top: 18px; right: 268px;">
+    Mental Health Check
+</button>>
+
+    <!-- Mental Health Dashboard -->
+    <div id="mental-health-dashboard" class="hidden">
+        <div class="dashboard-header">
+            <h3>Mental Health Check</h3>
+            <span class="close-btn" onclick="toggleMentalHealth()">×</span>
+        </div>
+        <div class="mood-options">
+            <button data-mood="happy">😊 Happy</button>
+            <button data-mood="neutral">😐 Neutral</button>
+            <button data-mood="stressed">😫 Stressed</button>
+            <button data-mood="anxious">😰 Anxious</button>
+        </div>
+        <div id="mental-health-results"></div>
+    </div>
+
+    <!-- Skill Gap Analyzer Button -->
+    <button id="skill-gap-analyzer">Skill Gap Analyzer</button>
+
+    <!-- Input Fields -->
+    <div id="skill-input-container">
+        <input type="text" id="interest" placeholder="Enter your interested field">
+        <input type="text" id="current-skills" placeholder="Enter your current skills (comma-separated)">
+        <button id="analyze-button">Analyze</button>
+    </div>
+
+    <!-- Results Container -->
+    <div id="skill-results"></div>
+
+    <!-- Job Trends Button -->
+    <button id="job-trends-btn" class="tooltip" style="position: absolute; top: 20px; right: 200px;">
+        <i class="fas fa-chart-line"></i>
+        <span class="tooltip-text">Job Trends</span>
+    </button>
+
+    <!-- Job Trends Dashboard -->
+    <div id="job-trends-dashboard" class="hidden" style="position: absolute; top: 70px; right: 20px; width: 350px; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 8px; z-index: 1000;">
+        <div id="trends-content"></div>
+    </div>
+
+    <div id="chatbox">
+        <div id="chat-messages"></div>
+        <i id="mic-toggle" class="fa-solid fa-microphone voice-icon" onclick="toggleMicrophone()"></i>
+        <input type="text" id="user-input" placeholder="Ask anything related to career" />
+        <button onclick="sendMessage()">Send</button>
+        <div class="tooltip">
+            <i class="fa-solid fa-trash clear-icon" onclick="clearChat()"></i>
+            <span class="tooltip-text">Clear Chat</span>
+        </div>                    
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
