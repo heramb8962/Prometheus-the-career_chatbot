@@ -1,84 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prometheus</title>
-    <!-- Direct link to the styles.css in the root directory -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prometheus: The ultimate career cousellor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
+
 <body>
-    <i class="fa-brands fa-slack icon"></i>
-    <div id="speak" class="tooltip">
-        <i onclick="toggleSpeech()" id="speak-toggle" class="fa-solid fa-volume-high speak-icon"></i>
-        <span class="tooltip-text" id="speak-tooltip">Enable Speak</span>
-    </div>
-    <div id="play" class="tooltip">
-        <i id="replay-speak" class="fa-solid fa-play speak-icon" onclick="replayLastResponse()"></i>
-        <span id="replay-tooltip" class="tooltip-text">Play Last Response</span>
-    </div> 
-    <div class="head">        
-        <h1>PROMETHEUS</h1>
-    </div>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
 
-    <!-- Mental Health Button -->
-    <button id="mental-health-btn" style="position: absolute; top: 18px; right: 268px;">
-        Mental Health Check
-    </button>
+  <div class="sidebar" id="sidebar">
+    <h2>⚙️ Features</h2>
 
-    <!-- Mental Health Dashboard -->
-    <div id="mental-health-dashboard" class="hidden">
-        <div class="dashboard-header">
-            <h3>Mental Health Check</h3>
-            <span class="close-btn" onclick="toggleMentalHealth()">×</span>
-        </div>
-        <div class="mood-options">
-            <button data-mood="happy">😊 Happy</button>
-            <button data-mood="neutral">😐 Neutral</button>
-            <button data-mood="stressed">😫 Stressed</button>
-            <button data-mood="anxious">😰 Anxious</button>
-        </div>
-        <div id="mental-health-results"></div>
+    <div class="skill-gap-analyzer">
+      <h3>Skill Gap Analyzer</h3>
+      <label for="currentSkills">Current Skills</label>
+      <textarea id="currentSkills" placeholder="e.g. HTML, CSS, JS"></textarea>
+      <label for="goal">Your Goal</label>
+      <textarea id="goal" placeholder="e.g. Full Stack Developer"></textarea>
+      <button onclick="analyzeSkills()">Analyze</button>
+      <button onclick="clearInputs()" style="margin-left: 10px; background-color: #ff4d4d;">Clear</button>
+      <div id="skillResult"></div>
     </div>
 
-    <!-- Skill Gap Analyzer Button -->
-    <button id="skill-gap-analyzer">Skill Gap Analyzer</button>
-
-    <!-- Input Fields -->
-    <div id="skill-input-container">
-        <input type="text" id="interest" placeholder="Enter your interested field">
-        <input type="text" id="current-skills" placeholder="Enter your current skills (comma-separated)">
-        <button id="analyze-button">Analyze</button>
+    <div class="job-trend-launcher" onclick="openJobTrendPopup()" title="View Job Field Trends">
+      <h3 class="job-trend-text">Job Trends</h3>
     </div>
 
-    <!-- Results Container -->
-    <div id="skill-results"></div>
+    <!-- Mental Health Check Button -->
+    <div class="job-trend-launcher" onclick="openMentalHealthModal()">
+      <h3 class="job-trend-text">Mental Health Check</h3>
+    </div>
+  </div>
 
-    <!-- Job Trends Button -->
-    <button id="job-trends-btn" class="tooltip" style="position: absolute; top: 20px; right: 200px;">
-        <i class="fas fa-chart-line"></i>
-        <span class="tooltip-text">Job Trends</span>
-    </button>
+  <div class="sidebar-blur-overlay"></div>
 
-    <!-- Job Trends Dashboard -->
-    <div id="job-trends-dashboard" class="hidden" style="position: absolute; top: 70px; right: 20px; width: 350px; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 8px; z-index: 1000;">
-        <div id="trends-content"></div>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="theme-switch" onchange="toggleTheme()">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <i class="fa-brands fa-slack icon"></i>
+      <h1>PROMETHEUS</h1>
     </div>
 
-    <div id="chatbox">
-        <div id="chat-messages"></div>
-        <i id="mic-toggle" class="fa-solid fa-microphone voice-icon" onclick="toggleMicrophone()"></i>
-        <input type="text" id="user-input" placeholder="Ask anything related to career" />
-        <button onclick="sendMessage()">Send</button>
-        <div class="tooltip">
-            <i class="fa-solid fa-trash clear-icon" onclick="clearChat()"></i>
-            <span class="tooltip-text">Clear Chat</span>
-        </div>                    
+    <div class="chat-box" id="chat-messages"></div>
+
+    <div class="chat-input">
+      <i id="mic-toggle" class="fa-solid fa-microphone voice-icon" onclick="toggleMicrophone()"></i>
+      <input type="text" id="user-input" placeholder="Ask anything related to career" />
+      <button onclick="sendMessage()">Send</button>
+      <div class="tooltip">
+        <i class="fa-solid fa-trash clear-icon" onclick="clearChat()"></i>
+        <span class="tooltip-text">Clear Chat</span>
+      </div>
     </div>
 
-    <!-- Link to your script.js file -->
-    <script src="script.js"></script>
+    <div id="speak" class="tooltip speech-toggle">
+      <i onclick="toggleSpeech()" id="speak-toggle" class="fa-solid fa-volume-high speak-icon"></i>
+      <span class="tooltip-text" id="speak-tooltip">Enable Speak</span>
+    </div>
+
+    <div id="play" class="tooltip speech-toggle">
+      <i id="replay-speak" class="fa-solid fa-play speak-icon" onclick="replayLastResponse()"></i>
+      <span id="replay-tooltip" class="tooltip-text">Play Last Response</span>
+    </div>
+  </div>
+
+  <div id="jobTrendModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeJobTrendPopup()">&times;</span>
+      <h2>📊 Job Salary Trends</h2>
+      <input type="text" id="jobFieldInput" placeholder="Enter job field..." />
+      <button onclick="showJobTrends()">Show Trends</button>
+      <canvas id="salaryChart" width="400" height="300"></canvas>
+    </div>
+  </div>
+
+  <!-- Mental Health Modal -->
+  <div id="mentalHealthModal" class="modal">
+    <div class="modal-content-mental">
+      <span class="close-mental" onclick="closeMentalHealthModal()">&times;</span>
+      <h3>How are you feeling right now?</h3>
+      <select id="userMood">
+        <option value="">Select your mood</option>
+        <option value="happy">😊 Happy</option>
+        <option value="sad">😢 Sad</option>
+        <option value="excited">😃 Excited</option>
+        <option value="amazing">🌟 Amazing</option>
+        <option value="other">😐 Other</option>
+      </select>
+      <br><br>
+      <button onclick="analyzeMentalHealth()">Get Suggestion</button>
+      <div id="mentalHealthResult" style="margin-top: 15px;"></div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
