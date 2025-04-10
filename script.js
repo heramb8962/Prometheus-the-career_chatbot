@@ -167,21 +167,86 @@ function analyzeSkills() {
     let response = `<strong>Pathway from "${current}" to "${goal}":</strong><br><ul>`;
   
     if (goal.includes("full stack")) {
-      response += "<li>Learn React or Angular for frontend</li>";
-      response += "<li>Master Node.js or Django for backend</li>";
-      response += "<li>Understand REST APIs and Databases (SQL/NoSQL)</li>";
-      response += "<li>Build full-stack projects and host them on GitHub</li>";
-    } else if (goal.includes("data scientist")) {
-      response += "<li>Learn Python and libraries like Pandas, NumPy</li>";
-      response += "<li>Master data visualization and EDA</li>";
-      response += "<li>Study ML algorithms with Scikit-Learn</li>";
-      response += "<li>Build ML projects and models</li>";
-    } else {
-      response += "<li>Research specific skills required for the goal</li>";
-      response += "<li>Take online courses and build projects</li>";
-      response += "<li>Connect with mentors or communities</li>";
-    }
-  
+        response += "<li>Learn React or Angular for frontend</li>";
+        response += "<li>Master Node.js or Django for backend</li>";
+        response += "<li>Understand REST APIs and Databases (SQL/NoSQL)</li>";
+        response += "<li>Build full-stack projects and host them on GitHub</li>";
+      } else if (goal.includes("data scientist")) {
+        response += "<li>Learn Python and libraries like Pandas, NumPy</li>";
+        response += "<li>Master data visualization and EDA</li>";
+        response += "<li>Study ML algorithms with Scikit-Learn</li>";
+        response += "<li>Build ML projects and models</li>";
+      } else if (goal.includes("machine learning") || goal.includes("ml engineer")) {
+        response += "<li>Master Python and ML libraries (Scikit-learn, TensorFlow, PyTorch)</li>";
+        response += "<li>Understand supervised, unsupervised, and deep learning techniques</li>";
+        response += "<li>Work on ML and DL projects</li>";
+        response += "<li>Deploy models and understand MLOps basics</li>";
+      } else if (goal.includes("frontend")) {
+        response += "<li>Learn HTML, CSS, and JavaScript thoroughly</li>";
+        response += "<li>Explore frameworks like React, Vue, or Angular</li>";
+        response += "<li>Understand responsive design and browser compatibility</li>";
+        response += "<li>Build and deploy frontend apps on GitHub or Vercel</li>";
+      } else if (goal.includes("backend")) {
+        response += "<li>Learn server-side languages (Node.js, Python, Java, Go)</li>";
+        response += "<li>Understand databases, authentication, and security</li>";
+        response += "<li>Work with REST and GraphQL APIs</li>";
+        response += "<li>Build backend services and deploy them</li>";
+      } else if (goal.includes("devops")) {
+        response += "<li>Learn Linux, Git, and scripting (Bash/Python)</li>";
+        response += "<li>Understand CI/CD, Docker, and Kubernetes</li>";
+        response += "<li>Explore cloud platforms like AWS, GCP, or Azure</li>";
+        response += "<li>Automate workflows and monitor performance</li>";
+      } else if (goal.includes("cybersecurity")) {
+        response += "<li>Understand networks, operating systems, and security fundamentals</li>";
+        response += "<li>Learn tools like Wireshark, Metasploit, and Nmap</li>";
+        response += "<li>Explore ethical hacking and penetration testing</li>";
+        response += "<li>Practice with platforms like TryHackMe or Hack The Box</li>";
+      } else if (goal.includes("blockchain")) {
+        response += "<li>Understand cryptography and distributed systems</li>";
+        response += "<li>Learn Solidity and smart contract development</li>";
+        response += "<li>Explore Ethereum, Web3.js, and related tools</li>";
+        response += "<li>Build decentralized apps (dApps)</li>";
+      } else if (goal.includes("game developer")) {
+        response += "<li>Learn C# with Unity or C++ with Unreal Engine</li>";
+        response += "<li>Understand game physics, rendering, and optimization</li>";
+        response += "<li>Build small games and upload them to platforms like itch.io</li>";
+        response += "<li>Study design patterns used in game development</li>";
+      } else if (goal.includes("mobile developer") || goal.includes("android") || goal.includes("ios")) {
+        response += "<li>Learn Kotlin/Java for Android or Swift for iOS</li>";
+        response += "<li>Explore cross-platform frameworks like Flutter or React Native</li>";
+        response += "<li>Understand mobile UI/UX and platform-specific guidelines</li>";
+        response += "<li>Publish apps to Play Store or App Store</li>";
+      } else if (goal.includes("ai") || goal.includes("artificial intelligence")) {
+        response += "<li>Learn Python and AI libraries like TensorFlow and Keras</li>";
+        response += "<li>Understand deep learning, NLP, and computer vision basics</li>";
+        response += "<li>Build AI projects and explore real-world applications</li>";
+        response += "<li>Study math foundations like linear algebra and probability</li>";
+      } else if (goal.includes("cloud engineer")) {
+        response += "<li>Get familiar with AWS, Azure, or Google Cloud</li>";
+        response += "<li>Understand cloud services, networking, and virtualization</li>";
+        response += "<li>Learn about Infrastructure as Code (IaC) using Terraform</li>";
+        response += "<li>Get certified in a cloud platform</li>";
+      } else if (goal.includes("ui/ux")) {
+        response += "<li>Understand UI/UX principles and design thinking</li>";
+        response += "<li>Learn tools like Figma, Adobe XD, or Sketch</li>";
+        response += "<li>Practice wireframing, prototyping, and user research</li>";
+        response += "<li>Build a portfolio of design case studies</li>";
+      } else if (goal.includes("software engineer")) {
+        response += "<li>Master DSA using Python, C++, or Java</li>";
+        response += "<li>Understand software development methodologies (Agile, Scrum)</li>";
+        response += "<li>Learn version control (Git) and collaboration practices</li>";
+        response += "<li>Build and contribute to real-world software projects</li>";
+      } else if (goal.includes("system design")) {
+        response += "<li>Understand scalability, load balancing, and caching</li>";
+        response += "<li>Learn about microservices and distributed systems</li>";
+        response += "<li>Read books like 'Designing Data-Intensive Applications'</li>";
+        response += "<li>Practice with mock system design interviews</li>";
+      } else {
+        response += "<li>Current we are not having results for your query</li>";
+        response += "<li>Research specific skills required for the goal</li>";
+        response += "<li>Take online courses and build projects</li>";
+        response += "<li>Connect with mentors or communities</li>";
+      }
     response += "</ul>";
     resultBox.innerHTML = response;
 }
